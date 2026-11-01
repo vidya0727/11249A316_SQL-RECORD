@@ -1,0 +1,874 @@
+SQL> CREATE TABLE Students (
+  2      student_id NUMBER PRIMARY KEY,
+  3      student_name VARCHAR2(30),
+  4      dept_id NUMBER
+  5  );
+CREATE TABLE Students (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> INSERT INTO Students VALUES (101, 'Anu', 1);
+
+1 row created.
+
+SQL> INSERT INTO Students VALUES (102, 'Bindu', 2);
+
+1 row created.
+
+SQL> INSERT INTO Students VALUES (103, 'Chitra', 3);
+
+1 row created.
+
+SQL> INSERT INTO Students VALUES (104, 'Divya', 1);
+
+1 row created.
+
+SQL> INSERT INTO Students VALUES (105, 'Elan', 4);
+
+1 row created.
+
+SQL> 
+SQL> CREATE TABLE Departments (
+  2      dept_id NUMBER PRIMARY KEY,
+  3      dept_name VARCHAR2(30)
+  4  );
+CREATE TABLE Departments (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> 
+SQL> 
+SQL> INSERT INTO Departments VALUES (1, 'CSE');INSERT INTO Departments VALUES (1, 'CSE');
+INSERT INTO Departments VALUES (1, 'CSE');INSERT INTO Departments VALUES (1, 'CSE')
+                                         *
+ERROR at line 1:
+ORA-00911: invalid character 
+
+
+SQL> INSERT INTO Departments VALUES (1, 'CSE');
+
+1 row created.
+
+SQL> INSERT INTO Departments VALUES (2, 'ECE');
+
+1 row created.
+
+SQL> INSERT INTO Departments VALUES (3, 'IT');
+
+1 row created.
+
+SQL> INSERT INTO Departments VALUES (5, 'MECH');
+
+1 row created.
+
+SQL> SELECT s.student_id, s.student_name, d.dept_name
+  2  FROM Students s
+  3  INNER JOIN Departments d
+  4  ON s.dept_id = d.dept_id;
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+
+16 rows selected.
+
+SQL> SELECT s.student_id, s.student_name, d.dept_name
+  2  FROM Students s
+  3  LEFT JOIN Departments d
+  4  ON s.dept_id = d.dept_id;
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+       105 Elan                                                                 
+                                                                                
+                                                                                
+       105 Elan                                                                 
+                                                                                
+                                                                                
+
+18 rows selected.
+
+SQL> SELECT s.student_id, s.student_name, d.dept_name
+  2  FROM Students s
+  3  RIGHT JOIN Departments d
+  4  ON s.dept_id = d.dept_id;
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+                                                                                
+MECH                                                                            
+                                                                                
+                                                                                
+MECH                                                                            
+                                                                                
+
+18 rows selected.
+
+SQL> SELECT s.student_id, s.student_name, d.dept_name
+  2  FROM Students s
+  3  FULL OUTER JOIN Departments d
+  4  ON s.dept_id = d.dept_id;
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+       105 Elan                                                                 
+                                                                                
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       102 Bindu                                                                
+ECE                                                                             
+                                                                                
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+       103 Chitra                                                               
+IT                                                                              
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+       104 Divya                                                                
+CSE                                                                             
+                                                                                
+       105 Elan                                                                 
+                                                                                
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+                                                                                
+MECH                                                                            
+                                                                                
+                                                                                
+MECH                                                                            
+                                                                                
+
+20 rows selected.
+
+SQL> SELECT s.student_name, d.dept_name
+  2  FROM Students s
+  3  CROSS JOIN Departments d;
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Anu                                                                             
+CSE                                                                             
+                                                                                
+Bindu                                                                           
+CSE                                                                             
+                                                                                
+Chitra                                                                          
+CSE                                                                             
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Divya                                                                           
+CSE                                                                             
+                                                                                
+Elan                                                                            
+CSE                                                                             
+                                                                                
+Anu                                                                             
+CSE                                                                             
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Bindu                                                                           
+CSE                                                                             
+                                                                                
+Chitra                                                                          
+CSE                                                                             
+                                                                                
+Divya                                                                           
+CSE                                                                             
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Elan                                                                            
+CSE                                                                             
+                                                                                
+Anu                                                                             
+ECE                                                                             
+                                                                                
+Bindu                                                                           
+ECE                                                                             
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Chitra                                                                          
+ECE                                                                             
+                                                                                
+Divya                                                                           
+ECE                                                                             
+                                                                                
+Elan                                                                            
+ECE                                                                             
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Anu                                                                             
+ECE                                                                             
+                                                                                
+Bindu                                                                           
+ECE                                                                             
+                                                                                
+Chitra                                                                          
+ECE                                                                             
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Divya                                                                           
+ECE                                                                             
+                                                                                
+Elan                                                                            
+ECE                                                                             
+                                                                                
+Anu                                                                             
+IT                                                                              
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Bindu                                                                           
+IT                                                                              
+                                                                                
+Chitra                                                                          
+IT                                                                              
+                                                                                
+Divya                                                                           
+IT                                                                              
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Elan                                                                            
+IT                                                                              
+                                                                                
+Anu                                                                             
+IT                                                                              
+                                                                                
+Bindu                                                                           
+IT                                                                              
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Chitra                                                                          
+IT                                                                              
+                                                                                
+Divya                                                                           
+IT                                                                              
+                                                                                
+Elan                                                                            
+IT                                                                              
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Anu                                                                             
+MECH                                                                            
+                                                                                
+Bindu                                                                           
+MECH                                                                            
+                                                                                
+Chitra                                                                          
+MECH                                                                            
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Divya                                                                           
+MECH                                                                            
+                                                                                
+Elan                                                                            
+MECH                                                                            
+                                                                                
+Anu                                                                             
+MECH                                                                            
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Bindu                                                                           
+MECH                                                                            
+                                                                                
+Chitra                                                                          
+MECH                                                                            
+                                                                                
+Divya                                                                           
+MECH                                                                            
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Elan                                                                            
+MECH                                                                            
+                                                                                
+Anu                                                                             
+CSE                                                                             
+                                                                                
+Bindu                                                                           
+CSE                                                                             
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Chitra                                                                          
+CSE                                                                             
+                                                                                
+Divya                                                                           
+CSE                                                                             
+                                                                                
+Elan                                                                            
+CSE                                                                             
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Anu                                                                             
+CSE                                                                             
+                                                                                
+Bindu                                                                           
+CSE                                                                             
+                                                                                
+Chitra                                                                          
+CSE                                                                             
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Divya                                                                           
+CSE                                                                             
+                                                                                
+Elan                                                                            
+CSE                                                                             
+                                                                                
+Anu                                                                             
+ECE                                                                             
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Bindu                                                                           
+ECE                                                                             
+                                                                                
+Chitra                                                                          
+ECE                                                                             
+                                                                                
+Divya                                                                           
+ECE                                                                             
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Elan                                                                            
+ECE                                                                             
+                                                                                
+Anu                                                                             
+ECE                                                                             
+                                                                                
+Bindu                                                                           
+ECE                                                                             
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Chitra                                                                          
+ECE                                                                             
+                                                                                
+Divya                                                                           
+ECE                                                                             
+                                                                                
+Elan                                                                            
+ECE                                                                             
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Anu                                                                             
+IT                                                                              
+                                                                                
+Bindu                                                                           
+IT                                                                              
+                                                                                
+Chitra                                                                          
+IT                                                                              
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Divya                                                                           
+IT                                                                              
+                                                                                
+Elan                                                                            
+IT                                                                              
+                                                                                
+Anu                                                                             
+IT                                                                              
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Bindu                                                                           
+IT                                                                              
+                                                                                
+Chitra                                                                          
+IT                                                                              
+                                                                                
+Divya                                                                           
+IT                                                                              
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Elan                                                                            
+IT                                                                              
+                                                                                
+Anu                                                                             
+MECH                                                                            
+                                                                                
+Bindu                                                                           
+MECH                                                                            
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Chitra                                                                          
+MECH                                                                            
+                                                                                
+Divya                                                                           
+MECH                                                                            
+                                                                                
+Elan                                                                            
+MECH                                                                            
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Anu                                                                             
+MECH                                                                            
+                                                                                
+Bindu                                                                           
+MECH                                                                            
+                                                                                
+Chitra                                                                          
+MECH                                                                            
+                                                                                
+
+STUDENT_NAME                                                                    
+--------------------------------------------------                              
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+Divya                                                                           
+MECH                                                                            
+                                                                                
+Elan                                                                            
+MECH                                                                            
+                                                                                
+
+80 rows selected.
+
+SQL> CREATE TABLE Employees (
+  2      emp_id NUMBER PRIMARY KEY,
+  3      emp_name VARCHAR2(30),
+  4      manager_id NUMBER
+  5  );
+CREATE TABLE Employees (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> INSERT INTO Employees VALUES (1, 'Ravi', 3);
+
+1 row created.
+
+SQL> INSERT INTO Employees VALUES (2, 'Sahana', 3);
+
+1 row created.
+
+SQL> INSERT INTO Employees VALUES (3, 'Prakash', NULL);
+
+1 row created.
+
+SQL> SELECT
+  2      e.emp_name AS Employee,
+  3      m.emp_name AS Manager
+  4  FROM Employees e
+  5  LEFT JOIN Employees m
+  6  ON e.manager_id = m.emp_id;
+
+EMPLOYEE                                                                        
+--------------------------------------------------                              
+MANAGER                                                                         
+--------------------------------------------------                              
+Ravi                                                                            
+Prakash                                                                         
+                                                                                
+Sahana                                                                          
+Prakash                                                                         
+                                                                                
+Prakash                                                                         
+                                                                                
+                                                                                
+
+SQL> SELECT s.student_id, s.student_name, d.dept_name
+  2  FROM Students s
+  3  INNER JOIN Departments d
+  4  ON s.dept_id = d.dept_id
+  5  WHERE d.dept_name = 'CSE';
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+DEPT_NAME                                                                       
+--------------------------------------------------                              
+       101 Anu                                                                  
+CSE                                                                             
+                                                                                

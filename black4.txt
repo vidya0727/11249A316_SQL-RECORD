@@ -1,0 +1,127 @@
+SQL> CREATE TABLE students (
+  2      reg_no NUMBER PRIMARY KEY,
+  3      name VARCHAR2(50),
+  4      department VARCHAR2(20),
+  5      marks NUMBER
+  6  );
+CREATE TABLE students (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> CREATE TABLE STDS (
+  2      STUDENT_ID NUMBER(5) PRIMARY KEY,
+  3      STUDENT_NAME VARCHAR2(50) NOT NULL,
+  4      DEPARTMENT VARCHAR2(10) NOT NULL,
+  5      SEMESTER NUMBER(2) CHECK (SEMESTER BETWEEN 1 AND 8),
+  6      MARKS NUMBER(3) CHECK (MARKS BETWEEN 0 AND 100),
+  7      CITY VARCHAR2(30),
+  8      EMAIL VARCHAR2(50) UNIQUE
+  9  );
+CREATE TABLE STDS (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> CREATE TABLE STS (
+  2      STUDENT_ID NUMBER(5) PRIMARY KEY,
+  3      STUDENT_NAME VARCHAR2(50) NOT NULL,
+  4      DEPARTMENT VARCHAR2(10) NOT NULL,
+  5      SEMESTER NUMBER(2) CHECK (SEMESTER BETWEEN 1 AND 8),
+  6      MARKS NUMBER(3) CHECK (MARKS BETWEEN 0 AND 100),
+  7      CITY VARCHAR2(30),
+  8      EMAIL VARCHAR2(50) UNIQUE
+  9  );
+
+Table created.
+
+SQL> INSERT INTO STS
+  2  VALUES (101, 'Arun', 'CSE', 4, 85, 'Chennai', 'arun@gmail.com');
+
+1 row created.
+
+SQL> GRANT SELECT
+  2  ON STS
+  3  TO student1;
+
+Grant succeeded.
+
+SQL> GRANT SELECT, INSERT, UPDATE
+  2  ON STS
+  3  TO student1;
+
+Grant succeeded.
+
+SQL> 
+SQL> GRANT ALL
+  2  ON STS
+  3  TO student1;
+
+Grant succeeded.
+
+SQL> REVOKE UPDATE
+  2  ON STS
+  3  FROM student1;
+
+Revoke succeeded.
+
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> INSERT INTO STS
+  2  VALUES (112, 'Arun', 'CSE', 4, 85, 'Chennai', 'arun112@gmail.com');
+
+1 row created.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> UPDATE STS
+  2  SET MARKS = 90
+  3  WHERE STUDENT_ID = 101;
+
+1 row updated.
+
+SQL> 
+SQL> ROLLBACK;
+
+Rollback complete.
+
+SQL> SAVEPOINT SP1;
+
+Savepoint created.
+
+SQL> UPDATE STS
+  2  SET MARKS = MARKS + 5
+  3  WHERE STUDENT_ID = 101;
+
+1 row updated.
+
+SQL> 
+SQL> SAVEPOINT SP1;
+
+Savepoint created.
+
+SQL> 
+SQL> UPDATE STS
+  2  SET MARKS = MARKS + 10
+  3  WHERE STUDENT_ID = 102;
+
+0 rows updated.
+
+SQL> 
+SQL> ROLLBACK TO SP1;
+
+Rollback complete.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> spool off

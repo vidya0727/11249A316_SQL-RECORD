@@ -1,0 +1,311 @@
+SQL> CREATE TABLE STD
+  2  (
+  3      STUDENT_ID INT PRIMARY KEY,
+  4      NAME VARCHAR(50)
+  5  );
+CREATE TABLE STD
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> drop table std
+  2  
+SQL> drop table std;
+
+Table dropped.
+
+SQL> CREATE TABLE STD
+  2  (
+  3      STUDENT_ID INT PRIMARY KEY,
+  4      NAME VARCHAR(50)
+  5  );
+
+Table created.
+
+SQL> INSERT INTO STD
+  2  VALUES (101, 'Arun');
+
+1 row created.
+
+SQL> INSERT INTO STD
+  2  VALUES (101, 'Priya');
+INSERT INTO STD
+*
+ERROR at line 1:
+ORA-00001: unique constraint (A311.SYS_C0036851) violated 
+
+
+SQL> CREATE TABLE STD
+  2  (
+  3      STUDENT_ID INT PRIMARY KEY,
+  4      NAME VARCHAR(50) NOT NULL
+  5  );
+CREATE TABLE STD
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> 
+SQL> 
+SQL> INSERT INTO STD
+  2  VALUES (101, 'Arun');
+INSERT INTO STD
+*
+ERROR at line 1:
+ORA-00001: unique constraint (A311.SYS_C0036851) violated 
+
+
+SQL> SELECT * FROM STD;
+
+STUDENT_ID NAME                                                                 
+---------- --------------------------------------------------                   
+       101 Arun                                                                 
+
+SQL> INSERT INTO STD
+  2  VALUES (102, 'Priya');
+
+1 row created.
+
+SQL> CREATE TABLE STD
+  2  (
+  3      STUDENT_ID INT PRIMARY KEY,
+  4      NAME VARCHAR(50) NOT NULL
+  5  );
+CREATE TABLE STD
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> DESC STD;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ STUDENT_ID                                NOT NULL NUMBER(38)
+ NAME                                               VARCHAR2(50)
+
+SQL> DROP TABLE STD CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> DROP TABLE DEP CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> CREATE TABLE DEP
+  2  (
+  3      DEP_ID INT PRIMARY KEY,
+  4      DEP_NAME VARCHAR2(30)
+  5  );
+
+Table created.
+
+SQL> INSERT INTO DEP VALUES (1, 'CSE');
+
+1 row created.
+
+SQL> INSERT INTO DEP VALUES (2, 'ECE');
+
+1 row created.
+
+SQL> INSERT INTO DEP VALUES (3, 'IT');
+
+1 row created.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> CREATE TABLE STD
+  2  (
+  3      STUDENT_ID INT PRIMARY KEY,
+  4      NAME VARCHAR2(50)
+  5  );
+
+Table created.
+
+SQL> INSERT INTO STD
+  2  VALUES (101, 'Arun');
+
+1 row created.
+
+SQL> INSERT INTO STD
+  2  VALUES (101, 'Priya');
+INSERT INTO STD
+*
+ERROR at line 1:
+ORA-00001: unique constraint (A311.SYS_C0036853) violated 
+
+
+SQL> DROP TABLE STD CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> 
+SQL> CREATE TABLE STD
+  2  (
+  3      STUDENT_ID INT PRIMARY KEY,
+  4      NAME VARCHAR2(50) NOT NULL
+  5  );
+
+Table created.
+
+SQL> INSERT INTO STD
+  2  VALUES (101, 'Arun');
+
+1 row created.
+
+SQL> INSERT INTO STD
+  2  VALUES (102, NULL);
+VALUES (102, NULL)
+             *
+ERROR at line 2:
+ORA-01400: cannot insert NULL into ("A311"."STD"."NAME") 
+
+
+SQL> DROP TABLE STD CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> 
+SQL> CREATE TABLE STD
+  2  (
+  3      STUDENT_ID INT PRIMARY KEY,
+  4      NAME VARCHAR2(50),
+  5      EMAIL VARCHAR2(100) UNIQUE
+  6  );
+
+Table created.
+
+SQL> INSERT INTO STD
+  2  VALUES (101, 'Arun', 'arun@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO STD
+  2  VALUES (102, 'Priya', 'arun@gmail.com');
+INSERT INTO STD
+*
+ERROR at line 1:
+ORA-00001: unique constraint (A311.SYS_C0036857) violated 
+
+
+SQL> DROP TABLE STD CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> 
+SQL> CREATE TABLE STD
+  2  (
+  3      STUDENT_ID INT PRIMARY KEY,
+  4      NAME VARCHAR2(50),
+  5      AGE INT CHECK (AGE >= 18)
+  6  );
+
+Table created.
+
+SQL> INSERT INTO STD
+  2  VALUES (101, 'Arun', 20);
+
+1 row created.
+
+SQL> INSERT INTO STD
+  2  VALUES (102, 'Priya', 16);
+INSERT INTO STD
+*
+ERROR at line 1:
+ORA-02290: check constraint (A311.SYS_C0036858) violated 
+
+
+SQL> DROP TABLE STD CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> 
+SQL> CREATE TABLE STD
+  2  (
+  3      STUDENT_ID INT PRIMARY KEY,
+  4      NAME VARCHAR2(50),
+  5      CITY VARCHAR2(30) DEFAULT 'Chennai'
+  6  );
+
+Table created.
+
+SQL> INSERT INTO STD
+  2  (STUDENT_ID, NAME)
+  3  VALUES (101, 'Arun');
+
+1 row created.
+
+SQL> SELECT * FROM STD;
+
+STUDENT_ID NAME                                                                 
+---------- --------------------------------------------------                   
+CITY                                                                            
+------------------------------                                                  
+       101 Arun                                                                 
+Chennai                                                                         
+                                                                                
+
+SQL> DROP TABLE STD CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> DROP TABLE DEP CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> 
+SQL> CREATE TABLE DEP
+  2  (
+  3      DEP_ID INT PRIMARY KEY,
+  4      DEP_NAME VARCHAR2(30)
+  5  );
+
+Table created.
+
+SQL> INSERT INTO DEP VALUES (1, 'CSE');
+
+1 row created.
+
+SQL> INSERT INTO DEP VALUES (2, 'ECE');
+
+1 row created.
+
+SQL> INSERT INTO DEP VALUES (3, 'IT');
+
+1 row created.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> CREATE TABLE STD
+  2  (
+  3      STUDENT_ID INT PRIMARY KEY,
+  4      NAME VARCHAR2(50),
+  5      DEP_ID INT,
+  6      FOREIGN KEY (DEP_ID)
+  7      REFERENCES DEP(DEP_ID)
+  8  );
+
+Table created.
+
+SQL> INSERT INTO STD
+  2  VALUES (101, 'Arun', 1);
+
+1 row created.
+
+SQL> INSERT INTO STD
+  2  VALUES (102, 'Priya', 10);
+INSERT INTO STD
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (A311.SYS_C0036864) violated - parent key not 
+found 
+
+
+SQL> spool off

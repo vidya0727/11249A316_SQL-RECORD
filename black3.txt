@@ -1,0 +1,414 @@
+SQL> CREATE TABLE STD
+  2  (
+  3      STUDENT_ID INT PRIMARY KEY,
+  4      STUDENT_NAME VARCHAR2(50) NOT NULL,
+  5      DEPARTMENT VARCHAR2(10) NOT NULL,
+  6      SEMESTER INT CHECK (SEMESTER BETWEEN 1 AND 8),
+  7      MARKS INT CHECK (MARKS BETWEEN 0 AND 100),
+  8      CITY VARCHAR2(30),
+  9      EMAIL VARCHAR2(50) UNIQUE
+ 10  );
+CREATE TABLE STD
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> CREATE TABLE STDS (
+  2      STUDENT_ID NUMBER(5) PRIMARY KEY,
+  3      STUDENT_NAME VARCHAR2(50) NOT NULL,
+  4      DEPARTMENT VARCHAR2(10) NOT NULL,
+  5      SEMESTER NUMBER(2) CHECK (SEMESTER BETWEEN 1 AND 8),
+  6      MARKS NUMBER(3) CHECK (MARKS BETWEEN 0 AND 100),
+  7      CITY VARCHAR2(30),
+  8      EMAIL VARCHAR2(50) UNIQUE
+  9  );
+
+Table created.
+
+SQL> INSERT INTO STDS
+  2  VALUES (101, 'Arun', 'CSE', 4, 85, 'Chennai', 'arun@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO STDS
+  2  VALUES (102, 'Priya', 'IT', 4, 78, 'Madurai', 'priya@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO STDS
+  2  VALUES (103, 'Karthik', 'CSE', 4, 92, 'Coimbatore', 'karthik@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO STDS
+  2  VALUES (104, 'Divya', 'ECE', 4, 74, 'Chennai', 'divya@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO STDS
+  2  VALUES (105, 'Rahul', 'IT', 4, 88, 'Salem', 'rahul@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO STDS
+  2  VALUES (106, 'Meena', 'CSE', 4, 69, 'Trichy', 'meena@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO STDS
+  2  VALUES (107, 'Sanjay', 'ECE', 4, 81, 'Madurai', 'sanjay@gmail.com');
+
+1 row created.
+
+SQL> INSERT INTO STDS
+  2  VALUES (108, 'Anitha', 'CSE', 4, 95, 'Chennai', 'anitha@gmail.com');
+
+1 row created.
+
+SQL> SELECT * FROM STDS;
+
+STUDENT_ID STUDENT_NAME                                       DEPARTMENT        
+---------- -------------------------------------------------- ----------        
+  SEMESTER      MARKS CITY                                                      
+---------- ---------- ------------------------------                            
+EMAIL                                                                           
+--------------------------------------------------                              
+       101 Arun                                               CSE               
+         4         85 Chennai                                                   
+arun@gmail.com                                                                  
+                                                                                
+       102 Priya                                              IT                
+         4         78 Madurai                                                   
+priya@gmail.com                                                                 
+
+STUDENT_ID STUDENT_NAME                                       DEPARTMENT        
+---------- -------------------------------------------------- ----------        
+  SEMESTER      MARKS CITY                                                      
+---------- ---------- ------------------------------                            
+EMAIL                                                                           
+--------------------------------------------------                              
+                                                                                
+       103 Karthik                                            CSE               
+         4         92 Coimbatore                                                
+karthik@gmail.com                                                               
+                                                                                
+       104 Divya                                              ECE               
+         4         74 Chennai                                                   
+
+STUDENT_ID STUDENT_NAME                                       DEPARTMENT        
+---------- -------------------------------------------------- ----------        
+  SEMESTER      MARKS CITY                                                      
+---------- ---------- ------------------------------                            
+EMAIL                                                                           
+--------------------------------------------------                              
+divya@gmail.com                                                                 
+                                                                                
+       105 Rahul                                              IT                
+         4         88 Salem                                                     
+rahul@gmail.com                                                                 
+                                                                                
+       106 Meena                                              CSE               
+
+STUDENT_ID STUDENT_NAME                                       DEPARTMENT        
+---------- -------------------------------------------------- ----------        
+  SEMESTER      MARKS CITY                                                      
+---------- ---------- ------------------------------                            
+EMAIL                                                                           
+--------------------------------------------------                              
+         4         69 Trichy                                                    
+meena@gmail.com                                                                 
+                                                                                
+       107 Sanjay                                             ECE               
+         4         81 Madurai                                                   
+sanjay@gmail.com                                                                
+                                                                                
+
+STUDENT_ID STUDENT_NAME                                       DEPARTMENT        
+---------- -------------------------------------------------- ----------        
+  SEMESTER      MARKS CITY                                                      
+---------- ---------- ------------------------------                            
+EMAIL                                                                           
+--------------------------------------------------                              
+       108 Anitha                                             CSE               
+         4         95 Chennai                                                   
+anitha@gmail.com                                                                
+                                                                                
+
+8 rows selected.
+
+SQL> INSERT INTO STDS
+  2  VALUES (101, 'Test', 'CSE', 4, 80, 'Chennai', 'test@gmail.com');
+INSERT INTO STDS
+*
+ERROR at line 1:
+ORA-00001: unique constraint (A311.SYS_C0036869) violated 
+
+
+SQL> INSERT INTO STDS
+  2  VALUES (112, NULL, 'CSE', 4, 80, 'Chennai', 'test@gmail.com');
+VALUES (112, NULL, 'CSE', 4, 80, 'Chennai', 'test@gmail.com')
+             *
+ERROR at line 2:
+ORA-01400: cannot insert NULL into ("A311"."STDS"."STUDENT_NAME") 
+
+
+SQL> INSERT INTO STDS
+  2  VALUES (101, 'Test', 'CSE', 4, 80, 'Chennai', 'test101@gmail.com');
+INSERT INTO STDS
+*
+ERROR at line 1:
+ORA-00001: unique constraint (A311.SYS_C0036869) violated 
+
+
+SQL> INSERT INTO STDS
+  2  VALUES (112, NULL, 'CSE', 4, 80, 'Chennai', 'test112@gmail.com');
+VALUES (112, NULL, 'CSE', 4, 80, 'Chennai', 'test112@gmail.com')
+             *
+ERROR at line 2:
+ORA-01400: cannot insert NULL into ("A311"."STDS"."STUDENT_NAME") 
+
+
+SQL> INSERT INTO STDS
+  2  VALUES (113, 'Test', 'CSE', 4, 80, 'Chennai', 'arun@gmail.com');
+INSERT INTO STDS
+*
+ERROR at line 1:
+ORA-00001: unique constraint (A311.SYS_C0036870) violated 
+
+
+SQL> INSERT INTO STDS
+  2  VALUES (114, 'Test', 'CSE', 4, 105, 'Chennai', 'test114@gmail.com');
+INSERT INTO STDS
+*
+ERROR at line 1:
+ORA-02290: check constraint (A311.SYS_C0036868) violated 
+
+
+SQL> INSERT INTO STDS
+  2  VALUES (115, 'Test', 'CSE', 10, 80, 'Chennai', 'test115@gmail.com');
+INSERT INTO STDS
+*
+ERROR at line 1:
+ORA-02290: check constraint (A311.SYS_C0036867) violated 
+
+
+SQL> ALTER TABLE STDS
+  2  ADD PHONE VARCHAR2(15);
+
+Table altered.
+
+SQL> ALTER TABLE STDS
+  2  ADD CONSTRAINT UQ_STDS_PHONE UNIQUE (PHONE);
+
+Table altered.
+
+SQL> ALTER TABLE STDS
+  2  MODIFY STUDENT_NAME VARCHAR2(100);
+
+Table altered.
+
+SQL> ALTER TABLE STDS
+  2  RENAME COLUMN CITY TO ADDRESS;
+
+Table altered.
+
+SQL> INSERT INTO STDS
+  2  VALUES (109, 'Vijay', 'IT', 4, 82, 'Chennai', 'vijay@gmail.com', NULL);
+
+1 row created.
+
+SQL> INSERT INTO STDS
+  2  VALUES (110, 'Sneha', 'CSE', 4, 89, 'Salem', 'sneha@gmail.com', NULL);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO STDS
+  2  VALUES (111, 'Naveen', 'ECE', 4, 76, 'Trichy', 'naveen@gmail.com', NULL);
+
+1 row created.
+
+SQL> UPDATE STDS
+  2  SET MARKS = 90
+  3  WHERE STUDENT_ID = 101;
+
+1 row updated.
+
+SQL> UPDATE STDS
+  2  SET DEPARTMENT = 'CSE'
+  3  WHERE STUDENT_ID = 102;
+
+1 row updated.
+
+SQL> UPDATE STDS
+  2  SET MARKS = MARKS + 5
+  3  WHERE DEPARTMENT = 'CSE';
+
+6 rows updated.
+
+SQL> UPDATE STDS
+  2  SET ADDRESS = 'Bengaluru'
+  3  WHERE ADDRESS = 'Chennai';
+
+4 rows updated.
+
+SQL> UPDATE STDS
+  2  SET MARKS = 95
+  3  WHERE STUDENT_ID = 105;
+
+1 row updated.
+
+SQL> UPDATE STDS
+  2  SET MARKS = 95
+  3  WHERE STUDENT_ID = 105;
+
+1 row updated.
+
+SQL> DELETE FROM STDS
+  2  WHERE STUDENT_ID = 106;
+
+1 row deleted.
+
+SQL> DELETE FROM STDS
+  2  WHERE MARKS < 75;
+
+1 row deleted.
+
+SQL> DELETE FROM STDS
+  2  WHERE DEPARTMENT = 'ECE'
+  3  AND MARKS < 80;
+
+1 row deleted.
+
+SQL> ALTER TABLE STDS
+  2  MODIFY ADDRESS DEFAULT 'Chennai';
+
+Table altered.
+
+SQL> ALTER TABLE STDS
+  2  ADD CONSTRAINT CHK_STDS_DEPT
+  3  CHECK (DEPARTMENT IN ('CSE', 'IT', 'ECE', 'EEE', 'MECH'));
+
+Table altered.
+
+SQL> ALTER TABLE STDS
+  2  ADD CONSTRAINT CHK_STDS_MARKS
+  3  CHECK (MARKS BETWEEN 0 AND 100);
+
+Table altered.
+
+SQL> CREATE TABLE DEP (
+  2      DEP_ID NUMBER(3) PRIMARY KEY,
+  3      DEP_NAME VARCHAR2(30) UNIQUE NOT NULL,
+  4      HOD VARCHAR2(50) NOT NULL
+  5  );
+CREATE TABLE DEP (
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> INSERT INTO DEP
+  2  VALUES (1, 'CSE', 'Dr. Kumar');
+INSERT INTO DEP
+            *
+ERROR at line 1:
+ORA-00913: too many values 
+
+
+SQL> CREATE TABLE DEPS (
+  2      DEP_ID NUMBER(3) PRIMARY KEY,
+  3      DEP_NAME VARCHAR2(30) UNIQUE NOT NULL,
+  4      HOD VARCHAR2(50) NOT NULL
+  5  );
+
+Table created.
+
+SQL> INSERT INTO DEPS
+  2  VALUES (1, 'CSE', 'Dr. Kumar');
+
+1 row created.
+
+SQL> INSERT INTO DEPS
+  2  VALUES (2, 'IT', 'Dr. Priya');
+
+1 row created.
+
+SQL> INSERT INTO DEPS
+  2  VALUES (3, 'ECE', 'Dr. Ravi');
+
+1 row created.
+
+SQL> INSERT INTO DEPS
+  2  VALUES (4, 'EEE', 'Dr. Meena');
+
+1 row created.
+
+SQL> SELECT * FROM DEPS;
+
+    DEP_ID DEP_NAME                                                             
+---------- ------------------------------                                       
+HOD                                                                             
+--------------------------------------------------                              
+         1 CSE                                                                  
+Dr. Kumar                                                                       
+                                                                                
+         2 IT                                                                   
+Dr. Priya                                                                       
+                                                                                
+         3 ECE                                                                  
+Dr. Ravi                                                                        
+                                                                                
+
+    DEP_ID DEP_NAME                                                             
+---------- ------------------------------                                       
+HOD                                                                             
+--------------------------------------------------                              
+         4 EEE                                                                  
+Dr. Meena                                                                       
+                                                                                
+
+SQL> INSERT INTO DEPS
+  2  VALUES (1, 'MECH', 'Dr. Arun');
+INSERT INTO DEPS
+*
+ERROR at line 1:
+ORA-00001: unique constraint (A311.SYS_C0036883) violated 
+
+
+SQL> INSERT INTO DEPS
+  2  VALUES (5, 'CSE', 'Dr. Arun');
+INSERT INTO DEPS
+*
+ERROR at line 1:
+ORA-00001: unique constraint (A311.SYS_C0036884) violated 
+
+
+SQL> INSERT INTO DEPS
+  2  VALUES (6, 'MECH', NULL);
+VALUES (6, 'MECH', NULL)
+                   *
+ERROR at line 2:
+ORA-01400: cannot insert NULL into ("A311"."DEPS"."HOD") 
+
+
+SQL> ALTER TABLE STDS
+  2  DROP CONSTRAINT UQ_STDS_PHONE;
+
+Table altered.
+
+SQL> ALTER TABLE STDS
+  2  DROP COLUMN PHONE;
+
+Table altered.
+
+SQL> TRUNCATE TABLE DEPS;
+
+Table truncated.
+
+SQL> DROP TABLE DEPS CASCADE CONSTRAINTS;
+
+Table dropped.
+
+SQL> spool off
