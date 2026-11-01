@@ -1,0 +1,248 @@
+SQL> SET SERVEROUTPUT ON;
+SQL> DECLARE
+  2      A NUMBER := 10;
+  3      B NUMBER := 20;
+  4      C NUMBER;
+  5  BEGIN
+  6      C := A + B;
+  7      DBMS_OUTPUT.PUT_LINE('Sum = ' || C);
+  8  END;
+  9  /
+Sum = 30                                                                        
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2      A NUMBER := 20;
+  3      B NUMBER := 10;
+  4      C NUMBER;
+  5  BEGIN
+  6      C := A - B;
+  7      DBMS_OUTPUT.PUT_LINE('Difference = ' || C);
+  8  END;
+  9  /
+Difference = 10                                                                 
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2      A NUMBER := 10;
+  3      B NUMBER := 5;
+  4      C NUMBER;
+  5  BEGIN
+  6      C := A * B;
+  7      DBMS_OUTPUT.PUT_LINE('Product = ' || C);
+  8  END;
+  9  /
+Product = 50                                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2      A NUMBER := 20;
+  3      B NUMBER := 5;
+  4      C NUMBER;
+  5  BEGIN
+  6      C := A / B;
+  7      DBMS_OUTPUT.PUT_LINE('Division = ' || C);
+  8  END;
+  9  /
+Division = 4                                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2      A NUMBER := 10;
+  3  BEGIN
+  4      IF MOD(A, 2) = 0 THEN
+  5          DBMS_OUTPUT.PUT_LINE('Even Number');
+  6      ELSE
+  7          DBMS_OUTPUT.PUT_LINE('Odd Number');
+  8      END IF;
+  9  END;
+ 10  /
+Even Number                                                                     
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2      A NUMBER := -5;
+  3  BEGIN
+  4      IF A > 0 THEN
+  5          DBMS_OUTPUT.PUT_LINE('Positive Number');
+  6      ELSIF A < 0 THEN
+  7          DBMS_OUTPUT.PUT_LINE('Negative Number');
+  8      ELSE
+  9          DBMS_OUTPUT.PUT_LINE('Zero');
+ 10      END IF;
+ 11  END;
+ 12  /
+Negative Number                                                                 
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2      A NUMBER := 50;
+  3      B NUMBER := 30;
+  4  BEGIN
+  5      IF A > B THEN
+  6          DBMS_OUTPUT.PUT_LINE('A is Largest');
+  7      ELSE
+  8          DBMS_OUTPUT.PUT_LINE('B is Largest');
+  9      END IF;
+ 10  END;
+ 11  /
+A is Largest                                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2      A NUMBER := 10;
+  3      B NUMBER := 25;
+  4      C NUMBER := 15;
+  5  BEGIN
+  6      IF A > B AND A > C THEN
+  7          DBMS_OUTPUT.PUT_LINE('A is Largest');
+  8      ELSIF B > C THEN
+  9          DBMS_OUTPUT.PUT_LINE('B is Largest');
+ 10      ELSE
+ 11          DBMS_OUTPUT.PUT_LINE('C is Largest');
+ 12      END IF;
+ 13  END;
+ 14  /
+B is Largest                                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> BEGIN
+  2      FOR I IN 1..10 LOOP
+  3          DBMS_OUTPUT.PUT_LINE(I);
+  4      END LOOP;
+  5  END;
+  6  /
+1                                                                               
+2                                                                               
+3                                                                               
+4                                                                               
+5                                                                               
+6                                                                               
+7                                                                               
+8                                                                               
+9                                                                               
+10                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2      A NUMBER := 5;
+  3  BEGIN
+  4      FOR I IN 1..10 LOOP
+  5          DBMS_OUTPUT.PUT_LINE(A || ' x ' || I || ' = ' || A*I);
+  6      END LOOP;
+  7  END;
+  8  /
+5 x 1 = 5                                                                       
+5 x 2 = 10                                                                      
+5 x 3 = 15                                                                      
+5 x 4 = 20                                                                      
+5 x 5 = 25                                                                      
+5 x 6 = 30                                                                      
+5 x 7 = 35                                                                      
+5 x 8 = 40                                                                      
+5 x 9 = 45                                                                      
+5 x 10 = 50                                                                     
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2      S NUMBER := 0;
+  3  BEGIN
+  4      FOR I IN 1..10 LOOP
+  5          S := S + I;
+  6      END LOOP;
+  7  
+  8      DBMS_OUTPUT.PUT_LINE('Sum = ' || S);
+  9  END;
+ 10  /
+Sum = 55                                                                        
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2      N NUMBER := 5;
+  3      F NUMBER := 1;
+  4  BEGIN
+  5      FOR I IN 1..N LOOP
+  6          F := F * I;
+  7      END LOOP;
+  8  
+  9      DBMS_OUTPUT.PUT_LINE('Factorial = ' || F);
+ 10  END;
+ 11  /
+Factorial = 120                                                                 
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2      A NUMBER := 10;
+  3      B NUMBER := 0;
+  4      C NUMBER;
+  5  BEGIN
+  6      C := A / B;
+  7      DBMS_OUTPUT.PUT_LINE('Result = ' || C);
+  8  
+  9  EXCEPTION
+ 10      WHEN ZERO_DIVIDE THEN
+ 11          DBMS_OUTPUT.PUT_LINE('Error: Cannot divide by zero');
+ 12  END;
+ 13  /
+Error: Cannot divide by zero                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> DECLARE
+  2      V_NAME VARCHAR2(50);
+  3  BEGIN
+  4      SELECT ENAME INTO V_NAME
+  5      FROM EMP
+  6      WHERE EMPNO = 9999;
+  7  
+  8      DBMS_OUTPUT.PUT_LINE('Employee Name = ' || V_NAME);
+  9  
+ 10  EXCEPTION
+ 11      WHEN NO_DATA_FOUND THEN
+ 12          DBMS_OUTPUT.PUT_LINE('Error: No data found');
+ 13  END;
+ 14  /
+    FROM EMP
+         *
+ERROR at line 5:
+ORA-06550: line 5, column 10: 
+PL/SQL: ORA-00942: table or view does not exist 
+ORA-06550: line 4, column 5: 
+PL/SQL: SQL Statement ignored 
+
+
+SQL> DECLARE
+  2      V_NAME VARCHAR2(50);
+  3  BEGIN
+  4      SELECT ENAME INTO V_NAME
+  5      FROM EMP;
+  6  
+  7      DBMS_OUTPUT.PUT_LINE('Employee Name = ' || V_NAME);
+  8  
+  9  EXCEPTION
+ 10      WHEN TOO_MANY_ROWS THEN
+ 11          DBMS_OUTPUT.PUT_LINE('Error: More than one row returned');
+ 12  END;
+ 13  /
+    FROM EMP;
+         *
+ERROR at line 5:
+ORA-06550: line 5, column 10: 
+PL/SQL: ORA-00942: table or view does not exist 
+ORA-06550: line 4, column 5: 
+PL/SQL: SQL Statement ignored 
+
+
+SQL> spool off
