@@ -1,0 +1,126 @@
+SQL> CREATE SEQUENCE sequence_1
+  2  START WITH 1
+  3  INCREMENT BY 1
+  4  MINVALUE 1
+  5  MAXVALUE 100
+  6  CYCLE;
+
+Sequence created.
+
+SQL> SELECT sequence_1.NEXTVAL FROM DUAL;
+
+   NEXTVAL                                                                      
+----------                                                                      
+         1                                                                      
+
+SQL> SELECT sequence_1.NEXTVAL FROM DUAL;
+
+   NEXTVAL                                                                      
+----------                                                                      
+         2                                                                      
+
+SQL> SELECT sequence_1.NEXTVAL FROM DUAL;
+
+   NEXTVAL                                                                      
+----------                                                                      
+         3                                                                      
+
+SQL> SELECT sequence_1.CURRVAL FROM DUAL;
+
+   CURRVAL                                                                      
+----------                                                                      
+         3                                                                      
+
+SQL> CREATE SEQUENCE sequence_2
+  2  START WITH 100
+  3  INCREMENT BY -1
+  4  MINVALUE 1
+  5  MAXVALUE 100
+  6  CYCLE;
+
+Sequence created.
+
+SQL> SELECT sequence_2.NEXTVAL FROM DUAL;
+
+   NEXTVAL                                                                      
+----------                                                                      
+       100                                                                      
+
+SQL> SELECT sequence_2.NEXTVAL FROM DUAL;
+
+   NEXTVAL                                                                      
+----------                                                                      
+        99                                                                      
+
+SQL> SELECT sequence_2.NEXTVAL FROM DUAL;
+
+   NEXTVAL                                                                      
+----------                                                                      
+        98                                                                      
+
+SQL> CREATE SEQUENCE sequence_3
+  2  START WITH 5
+  3  INCREMENT BY 5
+  4  MINVALUE 5
+  5  MAXVALUE 100
+  6  NOCYCLE;
+
+Sequence created.
+
+SQL> SELECT sequence_3.NEXTVAL FROM DUAL;
+
+   NEXTVAL                                                                      
+----------                                                                      
+         5                                                                      
+
+SQL> CREATE TABLE student_seq (
+  2      student_id NUMBER PRIMARY KEY,
+  3      student_name VARCHAR2(50)
+  4  );
+
+Table created.
+
+SQL> INSERT INTO student_seq
+  2  VALUES (sequence_1.NEXTVAL, 'Anu');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO student_seq
+  2  VALUES (sequence_1.NEXTVAL, 'Bindu');
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO student_seq
+  2  VALUES (sequence_1.NEXTVAL, 'Chitra');
+
+1 row created.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM student_seq;
+
+STUDENT_ID STUDENT_NAME                                                         
+---------- --------------------------------------------------                   
+         4 Anu                                                                  
+         5 Bindu                                                                
+         6 Chitra                                                               
+
+SQL> DROP SEQUENCE sequence_1;
+
+Sequence dropped.
+
+SQL> DROP SEQUENCE sequence_2;
+
+Sequence dropped.
+
+SQL> 
+SQL> DROP SEQUENCE sequence_3;
+
+Sequence dropped.
+
+SQL> spool off

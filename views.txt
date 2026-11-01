@@ -1,0 +1,387 @@
+SQL> CREATE TABLE employee (
+  2      employee_id INT,
+  3      first_name VARCHAR2(50),
+  4      last_name VARCHAR2(50),
+  5      department VARCHAR2(50),
+  6      salary INT
+  7  );
+
+Table created.
+
+SQL> INSERT INTO employee VALUES
+  2  (1, 'John', 'Smith', 'Sales', 50000);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO employee VALUES
+  2  (2, 'Alice', 'Johnson', 'Marketing', 55000);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO employee VALUES
+  2  (3, 'Michael', 'Williams', 'IT', 60000);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO employee VALUES
+  2  (4, 'Emily', 'Brown', 'Human Resources', 48000);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO employee VALUES
+  2  (5, 'David', 'Jones', 'Finance', 62000);
+
+1 row created.
+
+SQL> 
+SQL> INSERT INTO employee VALUES
+  2  (6, 'Sarah', 'Martinez', 'Operations', 53000);
+
+1 row created.
+
+SQL> 
+SQL> COMMIT;
+
+Commit complete.
+
+SQL> SELECT * FROM employee;
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                             SALARY                   
+-------------------------------------------------- ----------                   
+          1 John                                                                
+Smith                                                                           
+Sales                                                   50000                   
+                                                                                
+          2 Alice                                                               
+Johnson                                                                         
+Marketing                                               55000                   
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                             SALARY                   
+-------------------------------------------------- ----------                   
+                                                                                
+          3 Michael                                                             
+Williams                                                                        
+IT                                                      60000                   
+                                                                                
+          4 Emily                                                               
+Brown                                                                           
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                             SALARY                   
+-------------------------------------------------- ----------                   
+Human Resources                                         48000                   
+                                                                                
+          5 David                                                               
+Jones                                                                           
+Finance                                                 62000                   
+                                                                                
+          6 Sarah                                                               
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                             SALARY                   
+-------------------------------------------------- ----------                   
+Martinez                                                                        
+Operations                                              53000                   
+                                                                                
+
+6 rows selected.
+
+SQL> CREATE VIEW employee_view AS
+  2  SELECT
+  3      employee_id,
+  4      first_name,
+  5      last_name,
+  6      department
+  7  FROM employee;
+
+View created.
+
+SQL> SELECT * FROM employee_view;
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                                                      
+--------------------------------------------------                              
+          1 John                                                                
+Smith                                                                           
+Sales                                                                           
+                                                                                
+          2 Alice                                                               
+Johnson                                                                         
+Marketing                                                                       
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                                                      
+--------------------------------------------------                              
+                                                                                
+          3 Michael                                                             
+Williams                                                                        
+IT                                                                              
+                                                                                
+          4 Emily                                                               
+Brown                                                                           
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                                                      
+--------------------------------------------------                              
+Human Resources                                                                 
+                                                                                
+          5 David                                                               
+Jones                                                                           
+Finance                                                                         
+                                                                                
+          6 Sarah                                                               
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                                                      
+--------------------------------------------------                              
+Martinez                                                                        
+Operations                                                                      
+                                                                                
+
+6 rows selected.
+
+SQL> CREATE VIEW it_employee AS
+  2  SELECT *
+  3  FROM employee
+  4  WHERE department = 'IT';
+
+View created.
+
+SQL> SELECT * FROM it_employee;
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                             SALARY                   
+-------------------------------------------------- ----------                   
+          3 Michael                                                             
+Williams                                                                        
+IT                                                      60000                   
+                                                                                
+
+SQL> UPDATE employee_view
+  2  SET department = 'Customer Service'
+  3  WHERE employee_id = 1;
+
+1 row updated.
+
+SQL> SELECT * FROM employee_view;
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                                                      
+--------------------------------------------------                              
+          1 John                                                                
+Smith                                                                           
+Customer Service                                                                
+                                                                                
+          2 Alice                                                               
+Johnson                                                                         
+Marketing                                                                       
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                                                      
+--------------------------------------------------                              
+                                                                                
+          3 Michael                                                             
+Williams                                                                        
+IT                                                                              
+                                                                                
+          4 Emily                                                               
+Brown                                                                           
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                                                      
+--------------------------------------------------                              
+Human Resources                                                                 
+                                                                                
+          5 David                                                               
+Jones                                                                           
+Finance                                                                         
+                                                                                
+          6 Sarah                                                               
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                                                      
+--------------------------------------------------                              
+Martinez                                                                        
+Operations                                                                      
+                                                                                
+
+6 rows selected.
+
+SQL> SELECT * FROM employee;
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                             SALARY                   
+-------------------------------------------------- ----------                   
+          1 John                                                                
+Smith                                                                           
+Customer Service                                        50000                   
+                                                                                
+          2 Alice                                                               
+Johnson                                                                         
+Marketing                                               55000                   
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                             SALARY                   
+-------------------------------------------------- ----------                   
+                                                                                
+          3 Michael                                                             
+Williams                                                                        
+IT                                                      60000                   
+                                                                                
+          4 Emily                                                               
+Brown                                                                           
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                             SALARY                   
+-------------------------------------------------- ----------                   
+Human Resources                                         48000                   
+                                                                                
+          5 David                                                               
+Jones                                                                           
+Finance                                                 62000                   
+                                                                                
+          6 Sarah                                                               
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                             SALARY                   
+-------------------------------------------------- ----------                   
+Martinez                                                                        
+Operations                                              53000                   
+                                                                                
+
+6 rows selected.
+
+SQL> INSERT INTO employee_view
+  2  (employee_id, first_name, last_name, department)
+  3  VALUES
+  4  (7, 'Arun', 'Kumar', 'CSE');
+
+1 row created.
+
+SQL> SELECT * FROM employee_view;
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                                                      
+--------------------------------------------------                              
+          1 John                                                                
+Smith                                                                           
+Customer Service                                                                
+                                                                                
+          2 Alice                                                               
+Johnson                                                                         
+Marketing                                                                       
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                                                      
+--------------------------------------------------                              
+                                                                                
+          3 Michael                                                             
+Williams                                                                        
+IT                                                                              
+                                                                                
+          4 Emily                                                               
+Brown                                                                           
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                                                      
+--------------------------------------------------                              
+Human Resources                                                                 
+                                                                                
+          5 David                                                               
+Jones                                                                           
+Finance                                                                         
+                                                                                
+          6 Sarah                                                               
+
+EMPLOYEE_ID FIRST_NAME                                                          
+----------- --------------------------------------------------                  
+LAST_NAME                                                                       
+--------------------------------------------------                              
+DEPARTMENT                                                                      
+--------------------------------------------------                              
+Martinez                                                                        
+Operations                                                                      
+                                                                                
+          7 Arun                                                                
+Kumar                                                                           
+CSE                                                                             
+                                                                                
+
+7 rows selected.
+
+SQL> DELETE FROM employee_view
+  2  WHERE employee_id = 7;
+
+1 row deleted.
+
+SQL> DROP VIEW employee_view;
+
+View dropped.
+
+SQL> spool off
